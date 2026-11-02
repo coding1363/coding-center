@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme="night"] {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #252526;
+  --border-color: #333333;
+  --text-primary: #f3f4f6;
+}
+
+[data-theme="day"] {
+  --bg-primary: #e5e7eb;
+  --bg-secondary: #ffffff;
+  --border-color: #cbd5e1;
+  --text-primary: #1e1e1e;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* শান্ত পানিতে এক ফোঁটা পানি পড়ার মতো গোল হালকা নীল ঢেউ (Water Ripple) */
+@keyframes waterRipple {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.water-ripple-ring {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  border-radius: 9999px;
+  border: 2.5px solid #38bdf8;
+  box-shadow: 0 0 18px #00bfff, inset 0 0 12px #38bdf8;
+  animation: waterRipple 1.6s infinite cubic-bezier(0.1, 0.6, 0.3, 1);
+}
+
+.delay-0 {
+  animation-delay: 0s;
+}
+.delay-300 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 1s;
+}
+
+/* ১৬:৯ কোর্স ফটো ডান থেকে বাম দিকে চলমান স্লাইডার */
+@keyframes marqueeRTL {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-rtl {
+  animation: marqueeRTL 18s linear infinite;
+}
+
+.animate-marquee-rtl:hover {
+  animation-play-state: paused;
+}
+
+/* সার্টিফিকেট ও অ্যাডমিশন ফর্ম প্রিন্ট করার সময় অতিরিক্ত অংশ লুকানো */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+}
